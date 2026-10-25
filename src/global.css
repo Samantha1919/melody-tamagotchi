@@ -1,0 +1,25 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.relative {
+    position: relative;
+}
+
+
+.myMelody {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.p-top{
+    padding-top: 8px;
+}
+
+.gap{
+    gap: 8px;
+}

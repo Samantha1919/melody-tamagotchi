@@ -1,0 +1,16 @@
+body {
+  font-family: monospace;
+  margin: auto;
+  padding: 8px;
+}
+
+button {
+  border: none;
+  background-color: pink;
+}
+
+.percent {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
