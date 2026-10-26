@@ -1,29 +1,27 @@
 <!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Melody Tamgotchi</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./global.css" />
+    <script src="home.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>My Melody Tamgotchi</title>
-  <link rel="stylesheet" href="./index.css" />
-  <link rel="stylesheet" href="./global.css">
-  <script src="home.js" defer></script>
-</head>
+  <body>
+    <div class="percent">
+      <p id="percent">%</p>
+    </div>
 
-<body>
-  <div class="percent">
-  <p id="percent">%</p>
-  </div>
+    <div class="center relative">
+      <img src="./assets/tamagotchi-blue.svg" class="tamagotchi" />
+      <img src="./assets/normal.svg" class="myMelody" />
+    </div>
 
-  <div class="center relative">
-    <img src="./assets/tamagotchi-blue.svg" class="tamagotchi">
-    <img src="./assets/normal.svg" class="myMelody">
-  </div>
-
-  <div class="center p-top gap">
-  <button>eat</button>
-  <button>play</button>
-  <button>clean</button>
-  </div>
-
-</body>
+    <div class="center p-top gap">
+      <button>eat</button>
+      <button onclick="location.href = './play/play.html'">play</button>
+      <button>clean</button>
+    </div>
+  </body>
 </html>
