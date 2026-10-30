@@ -7,6 +7,7 @@ let playerX = canvas.width / 2;
 const playerSize = 50;
 const squares = [];
 let score = 0;
+let gameOver = false; // devient true quand on perd, pour stopper la boucle de jeu
 const playerImage = new Image();
 playerImage.src = "../assets/normal.svg";
 
@@ -66,14 +67,17 @@ function drawsquares() {
       playerX + playerSize > square.x &&
       canvas.height - playerSize - 5 < square.y + square.size
     ) {
+      gameOver = true; // on arrete le jeu AVANT l'alerte, pour pas qu'une 2e collision declenche une 2e alerte
       alert("Game Over! Your score: " + score);
-      document.location.reload();
-      // mainWindow.reload();
+      // On demande au processus main (index.js) de recharger la fenetre via IPC
+      window.electronAPI.reloadWindow();
     }
   });
 }
 
 function draw() {
+  if (gameOver) return; // le jeu est fini : on stoppe la boucle (plus de requestAnimationFrame)
+
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   context.beginPath();

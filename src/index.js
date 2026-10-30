@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, "..",'node_modules', '.bin', 'electron')
@@ -9,9 +9,11 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+let mainWindow; // gardé ici pour que le main y accede partout (ex: reload via IPC)
+
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 500,
     height: 500,
         resizable: false,
@@ -26,6 +28,14 @@ const createWindow = () => {
   // ouvre linspecteur
  //mainWindow.webContents.openDevTools();
 };
+
+// La page (renderer) demande un reload via IPC -> le main recharge la fenêtre.
+// Seul le main connait mainWindow, c'est lui qui a le droit de faire le reload.
+ipcMain.on('reload-window', () => {
+  if (mainWindow) {
+    mainWindow.reload();
+  }
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
